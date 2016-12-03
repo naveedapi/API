@@ -58,6 +58,13 @@ describe("Pokemon Api test", () => {
                 });
     });
     
+    it("should return an error message if pokemon is not found", () => {
+        return request.get("/api/pokemons/lost")
+                .expect(404)
+                .expect("Sorry pokemon not found");
+                
+    });
+    
     
     it("should create new pokemon", () => {
 
@@ -67,5 +74,22 @@ describe("Pokemon Api test", () => {
                 .send({name: "test4", description: "desc test4"})
                 .set('Accept', /application\/json/)
                 .expect("Successfully created Pokemon");
+    });
+    
+    it("should update a pokemon", () => {
+        return request.put("/api/pokemons/test2")
+                .expect(200)
+                .type("form")
+                .send({description: "Change the test desc for this pokemon"})
+                .set('Accept', /application\/json/)
+                .expect("Pokemon updated");
+    });
+    
+    it("should delete a pokemon", () => {
+        return request.delete("/api/pokemons/test3")
+                .expect(200)
+                .type("form")
+                .set('Accept', /application\/json/)
+                .expect("Successfully removed pokemon");
     });
 });
