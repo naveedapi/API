@@ -11,6 +11,14 @@ function* addPokemon() {
 };
 
 function* updatePokemon() {
+    //use the name of a pokemon to find the pokemon and update
+    const pokemon = yield PokeMon.findOneAndUpdate({name: this.params.identifier}, this.request.body);
+    if(pokemon){
+        this.body = "Pokemon updated";
+    } else {
+        this.status = 404;
+        this.body = "Sorry this pokemon was not found";
+    }
     
 }
 
