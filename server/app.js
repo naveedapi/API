@@ -8,7 +8,7 @@ function App() {
     
     forward(app);
     //Make api calls with "/api" as default base
-    //for example GET => /api/getbooks 
+    //for example GET => /api/getbooks
     app
         .use(mount("/api", Api()));
         

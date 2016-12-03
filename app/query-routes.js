@@ -1,10 +1,10 @@
 import axios from "axios";
-
+import PokeMon from "./model/pokemon-model";
 //functions with the asterisks e.g function* means they are generator functions
 //which allow you to use "yield" keywords
 //yields are methods that will allow you data to be returned before it continues 
 //execution of other code.
-function* getIcons() {
+function* getIcons() { //sample
     //in koa js to send response back, you do that by assinging the response to this.body
     this.body ={
         author: "Test",
@@ -12,10 +12,24 @@ function* getIcons() {
     }
 }
 
+function* getPokemonsFromPokiApi() {
+    const response = yield axios.get("http://pokeapi.co/api/v2/pokemon/");
+    //after fecthing pokemons from public api
+    //let's save the response to database
+    const pokemons =  new PokeMon();
+    pokemons.collection.insert(response.data.results);
+    this.body = response.data;
+};
+
 
 function* getPokemons() {
-    const response = yield axios.get("http://pokeapi.co/api/v2/pokemon/");
-    console.log(response);
-    this.body = response.data;
-}
-export default {getIcons, getPokemons};
+    const pokemons = yield PokeMon.find().lean();
+    this.body = pokemons;
+};
+
+//TODO: SET ENDPOINT
+function* findOnePokemon() {
+    
+};
+
+export default {getIcons, getPokemons, getPokemonsFromPokiApi, findOnePokemon};
