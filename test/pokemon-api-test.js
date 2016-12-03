@@ -2,12 +2,14 @@ import {expect } from "chai";
 import supertest from "supertest-as-promised";
 import mongoose from "mongoose";
 mongoose.Promise = Promise;
+import bodyParser from "koa-bodyparser";
 
 import App from "../server/app";
 import PokeMon from "../app/model/pokemon-model";
 
 
 let app = App();
+app.use(bodyParser());
 let request = supertest.agent(app.listen());
 
 
@@ -55,4 +57,15 @@ describe("Pokemon Api test", () => {
                     expect(res.body.description).to.equal("desc test1");
                 });
     });
-})
+    
+    
+    it("should create new pokemon", () => {
+
+        return request.post("/api/pokemons")
+                .expect(200)
+                .type('form')
+                .send({name: "test4", description: "desc test4"})
+                .set('Accept', /application\/json/)
+                .expect("Successfully created Pokemon");
+    });
+});
