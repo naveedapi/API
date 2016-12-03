@@ -23,6 +23,14 @@ function* updatePokemon() {
 }
 
 function* deletePokemon() {
-    
+    const pokemon = yield PokeMon.findOneAndRemove({name: this.params.identifier});
+    console.log(pokemon);
+    if(pokemon) {
+     this.body = "Successfully removed pokemon";
+    } else {
+        this.status = 404;
+        this.body = "The pokemon you are trying to remove does not exist";
+    }
 }
+
 export default { addPokemon, updatePokemon, deletePokemon }
