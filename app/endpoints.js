@@ -9,6 +9,7 @@ const router = koaRouter();
 api.use(bodyParser());
 
 router.get("/icons", queryRoutes.getIcons);
+router.get("/pokemons", queryRoutes.getPokemons);
 
 
 api

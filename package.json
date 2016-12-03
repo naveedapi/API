@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/naveedapi/API#readme",
   "dependencies": {
+    "axios": "^0.15.3",
     "babel": "^6.5.2",
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.8",

@@ -1,3 +1,5 @@
+import axios from "axios";
+
 //functions with the asterisks e.g function* means they are generator functions
 //which allow you to use "yield" keywords
 //yields are methods that will allow you data to be returned before it continues 
@@ -10,4 +12,10 @@ function* getIcons() {
     }
 }
 
-export default {getIcons};
+
+function* getPokemons() {
+    const response = yield axios.get("http://pokeapi.co/api/v2/pokemon/");
+    console.log(response);
+    this.body = response.data;
+}
+export default {getIcons, getPokemons};
