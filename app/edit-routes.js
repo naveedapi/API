@@ -1,7 +1,6 @@
 import PokeMon from "./model/pokemon-model";
 
 function* addPokemon() {
-  console.log(this.request.body);
   const pokemon = new PokeMon(this.request.body);
   try {
     pokemon.save();
