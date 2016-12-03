@@ -29,7 +29,13 @@ function* getPokemons() {
 
 //TODO: SET ENDPOINT
 function* findOnePokemon() {
-    
+    const pokemons = yield PokeMon.findOne({name: this.params.identifier});
+    if(pokemons) {
+        this.body = pokemons;
+    } else {
+        this.status = 404;
+        this.body = "Sorry pokemon not found";
+    }
 };
 
 export default {getIcons, getPokemons, getPokemonsFromPokiApi, findOnePokemon};

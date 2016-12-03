@@ -24,7 +24,6 @@ function* updatePokemon() {
 
 function* deletePokemon() {
     const pokemon = yield PokeMon.findOneAndRemove({name: this.params.identifier});
-    console.log(pokemon);
     if(pokemon) {
      this.body = "Successfully removed pokemon";
     } else {

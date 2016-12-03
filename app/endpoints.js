@@ -12,6 +12,7 @@ api.use(bodyParser());
 router.get("/icons", queryRoutes.getIcons);
 router.get("/public-pokemon", queryRoutes.getPokemonsFromPokiApi);
 router.get("/pokemons", queryRoutes.getPokemons);
+router.get("/pokemons/:identifier", queryRoutes.findOnePokemon);
 router.post("/pokemons", editRoutes.addPokemon);
 router.put("/pokemons/:identifier", editRoutes.updatePokemon);
 router.delete("/pokemons/:identifier", editRoutes.deletePokemon);
