@@ -17,7 +17,7 @@ function startMaster() {
         }, i * 1000);
     }
     
-    console.info(`==> ✅  Server is listening in ${process.env.NODE_ENV } mode, with worker ${process.pid}`)
+    console.info(`==> ✅  Server is listening in ${process.env.PORT } mode, with worker ${process.pid}`)
     cluster.on("exit", (worker) => {
         console.warn(`Worker ${worker.process.pid} died, forking a new worker`)
         cluster.fork();
