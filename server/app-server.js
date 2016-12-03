@@ -7,6 +7,10 @@ import os from "os";
 //meaning incase you app crases, another server is spawn up immediately to keep your app alive 
 import cluster from "cluster";
 import App from "./app";
+import mongoose from "mongoose";
+mongoose.Promise = Promise;
+
+import mongoConnectionString from "./mongo-connection-string";
 
 function startMaster() {
     //WEB_CONCURRENCY is being used by heroku, it's an environment variable
@@ -26,6 +30,8 @@ function startMaster() {
 
 
 function startWorker() {
+    mongoose.connect(mongoConnectionString);
+    
     const app = App();
     const port = process.env.PORT || 3000;
     app.listen(port);
