@@ -1,3 +1,4 @@
-require("babel-register");
-require("babel-polyfill");
-require("./app-server.js");
+'use strict'
+require('babel-register')
+require('babel-polyfill')
+require('./app-server.js')

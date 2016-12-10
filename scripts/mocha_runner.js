@@ -1,2 +1,3 @@
-require("babel-core/register");
-require("babel-polyfill");
+'use strict'
+require('babel-core/register')
+require('babel-polyfill')

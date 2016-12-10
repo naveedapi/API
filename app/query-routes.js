@@ -27,7 +27,7 @@ function* getPokemons() {
     this.body = pokemons;
 };
 
-//TODO: SET ENDPOINT
+//TODO: SET ENDPOINT 
 function* findOnePokemon() {
     const pokemons = yield PokeMon.findOne({name: this.params.identifier});
     if(pokemons) {
